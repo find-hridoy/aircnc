@@ -73,3 +73,20 @@
   padding: 5px 16px !important;
   display: block !important;
 }
+.accordion__button {
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+}
+.MuiButton-root {
+}
+.accordion__button .MuiButton-root {
+  border-radius: 10px !important;
+  width: 90px;
+  border: 2px solid;
+  border-color: var(--green);
+}
+.accordion__button .MuiButton-label {
+  color: var(--green);
+  font-weight: 600;
+}

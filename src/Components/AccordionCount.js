@@ -3,7 +3,8 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import React from "react";
 
-function AccordionCount({ title, age, countValue, increase }) {
+function AccordionCount(props) {
+  const { title, age, countValue, handleCount } = props;
   return (
     <div>
       <div className="count__section">
@@ -12,11 +13,19 @@ function AccordionCount({ title, age, countValue, increase }) {
           <p>{age}</p>
         </div>
         <div className="count__count">
-          <IconButton aria-label="remove" className="">
+          <IconButton
+            aria-label="remove"
+            className=""
+            onClick={() => handleCount(false)}
+          >
             <RemoveIcon />
           </IconButton>
           <input type="text" value={countValue} disabled />
-          <IconButton aria-label="add" className="" onClick={increase}>
+          <IconButton
+            aria-label="add"
+            className=""
+            onClick={() => handleCount(true)}
+          >
             <AddIcon />
           </IconButton>
         </div>

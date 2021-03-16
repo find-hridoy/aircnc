@@ -1,5 +1,5 @@
 import DateFnsUtils from "@date-io/date-fns";
-import { Accordion, AccordionSummary } from "@material-ui/core";
+import { Accordion, AccordionSummary, Button } from "@material-ui/core";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {
@@ -16,14 +16,29 @@ function SearchForm() {
   const [childCount, setChildCount] = useState(0);
   const [babieCount, setBabieCount] = useState(0);
 
-  const adultIncrease = () => {
-    setAdultCount(adultCount + 1);
+  const handleAdultCount = (count) => {
+    if (count && adultCount < 5) {
+      setAdultCount(adultCount + 1);
+    }
+    if (!count && adultCount > 0) {
+      setAdultCount(adultCount - 1);
+    }
   };
-  const childIncrease = () => {
-    setChildCount(childCount + 1);
+  const handleChildCount = (count) => {
+    if (count && childCount < 5) {
+      setChildCount(childCount + 1);
+    }
+    if (!count && childCount > 0) {
+      setChildCount(childCount - 1);
+    }
   };
-  const babieIncrease = () => {
-    setBabieCount(babieCount + 1);
+  const handleBabieCount = (count) => {
+    if (count && babieCount < 5) {
+      setBabieCount(babieCount + 1);
+    }
+    if (!count && babieCount > 0) {
+      setBabieCount(babieCount - 1);
+    }
   };
   //Material Date
   //    const [selectedDate, setSelectedDate] = useState({
@@ -102,27 +117,31 @@ function SearchForm() {
             >
               <p>Guests</p>
               <h3>
-                {adultCount} ADULTS, {childCount} CHILD
+                {adultCount} ADULTS, {childCount} CHILD, {babieCount} BABIES
               </h3>
             </AccordionSummary>
             <AccordionDetails>
               <AccordionCount
                 title="ADULTS"
                 countValue={adultCount}
-                increase={adultIncrease}
+                handleCount={handleAdultCount}
               />
               <AccordionCount
                 title="CHILD"
                 age="Age 2-12"
                 countValue={childCount}
-                increase={childIncrease}
+                handleCount={handleChildCount}
               />
               <AccordionCount
                 title="BABIES"
                 age="Younger than 2"
                 countValue={babieCount}
-                increase={babieIncrease}
+                handleCount={handleBabieCount}
               />
+              <div className="accordion__button">
+                <div></div>
+                <Button size="small">Apply</Button>
+              </div>
             </AccordionDetails>
           </Accordion>
         </div>
