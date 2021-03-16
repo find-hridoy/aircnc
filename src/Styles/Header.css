@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background: gray; */
+  padding: 10px 60px;
+  border-bottom: 1px solid;
+  border-color: var(--ll-gray);
+}
+.header__logo h4 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--green);
+}
+nav ul {
+  display: flex;
+  /* background: gray; */
+  align-items: center;
+}
+nav ul li {
+  margin: 0 18px;
+}
+nav ul li a {
+  color: var(--black);
+  font-weight: 500;
+  font-size: 15px;
+}
+nav ul .MuiButton-root {
+  border-radius: 30px !important;
+  background: var(--g-color);
+  width: 80px;
+}
+nav ul .MuiButton-label {
+  color: var(--white);
+  text-transform: none;
+}

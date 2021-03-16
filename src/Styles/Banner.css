@@ -1,0 +1,12 @@
+.banner__title {
+  padding-left: 60px;
+  margin-top: 30px;
+}
+.banner__section {
+  padding: 0 60px;
+  margin-top: 30px;
+}
+.banner__left {
+  /* background: red; */
+  width: 40%;
+}
