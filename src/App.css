@@ -4,12 +4,15 @@
 :root {
   --g-color: linear-gradient(to right, #2bde8c, #86f244);
   --green: #2bde8c;
+  --d-green: #00a799;
   --black: #000;
+  --b-black: #002b37;
   --white: #fff;
   --gray: #6a6a6a;
   --l-gray: #b4b3b3;
   --ll-gray: #eaeaea;
   --blue: #0377ff;
+  --l--blue: #009ab4;
 }
 * {
   margin: 0;
@@ -32,3 +35,5 @@ a {
 @import "./Styles/Banner";
 @import "./Styles/SearchForm";
 @import "./Styles/AccordionCount.css";
+@import "../node_modules/swiper/swiper-bundle.min";
+@import "./Styles/SwiperCard";

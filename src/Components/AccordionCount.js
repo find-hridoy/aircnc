@@ -9,12 +9,13 @@ function AccordionCount(props) {
     <div>
       <div className="count__section">
         <div className="count__title">
-          <h3>{title}</h3>
+          <h4>{title}</h4>
           <p>{age}</p>
         </div>
         <div className="count__count">
           <IconButton
             aria-label="remove"
+            size="small"
             className=""
             onClick={() => handleCount(false)}
           >
@@ -24,6 +25,7 @@ function AccordionCount(props) {
           <IconButton
             aria-label="add"
             className=""
+            size="small"
             onClick={() => handleCount(true)}
           >
             <AddIcon />

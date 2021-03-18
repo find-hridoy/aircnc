@@ -1,0 +1,43 @@
+.swiper__card .MuiCard-root {
+  max-width: 345px;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+.swiper__card .MuiCardContent-root {
+  padding-left: 0 !important;
+  padding-top: 7px;
+}
+.swiper__card .card__location {
+  font-weight: 800;
+  font-size: 8.5px;
+  text-transform: uppercase;
+  color: var(--b-black);
+  transition: color ease-in-out 0.2s;
+}
+.swiper__card .card__title {
+  font-weight: 600;
+  font-size: 13.5px;
+  margin-top: 9px;
+  color: var(--gray);
+}
+.swiper__card .card__price {
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--l-gray);
+  margin-top: 2px;
+}
+.swiper__card .card__rating {
+  font-weight: 800;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  color: var(--gray);
+  margin-top: 2px;
+}
+.card__rating .MuiSvgIcon-root {
+  color: var(--d-green) !important;
+  font-size: 15px !important;
+}
+.swiper__card .MuiCard-root:hover .card__location {
+  color: var(--l--blue);
+}

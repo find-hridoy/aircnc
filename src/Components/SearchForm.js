@@ -2,6 +2,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { Accordion, AccordionSummary, Button } from "@material-ui/core";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SearchIcon from "@material-ui/icons/Search";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
@@ -70,7 +71,7 @@ function SearchForm() {
     <>
       <form action="">
         <div className="search__location">
-          <h3>LOCATION</h3>
+          <h4>LOCATION</h4>
           <input
             type="text"
             name=""
@@ -109,16 +110,16 @@ function SearchForm() {
           </div>
         </MuiPickersUtilsProvider>
         <div className="">
-          <Accordion>
+          <Accordion defaultExpanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel2a-header"
             >
               <p>Guests</p>
-              <h3>
+              <h4>
                 {adultCount} ADULTS, {childCount} CHILD, {babieCount} BABIES
-              </h3>
+              </h4>
             </AccordionSummary>
             <AccordionDetails>
               <AccordionCount
@@ -144,6 +145,11 @@ function SearchForm() {
               </div>
             </AccordionDetails>
           </Accordion>
+        </div>
+        <div className="search__button">
+          <Button>
+            <SearchIcon /> Search
+          </Button>
         </div>
       </form>
     </>

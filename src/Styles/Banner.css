@@ -1,12 +1,42 @@
+.banner {
+  padding: 0 60px 20px;
+}
 .banner__title {
-  padding-left: 60px;
+  /* padding-left: 60px; */
   margin-top: 30px;
 }
 .banner__section {
-  padding: 0 60px;
   margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .banner__left {
-  /* background: red; */
-  width: 40%;
+  width: 30%;
+}
+.banner__right {
+  width: 62%;
+  padding-right: 35px;
+}
+.experience__title,
+.home__title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.experience__title h3,
+.home__title h3 {
+  color: var(--gray);
+}
+.experience__title a,
+.home__title a {
+  font-size: 13px;
+  font-weight: 600;
+}
+.experience__title .MuiSvgIcon-root,
+.home__title .MuiSvgIcon-root {
+  font-size: 12px;
+}
+.banner__home {
+  margin-top: 12px;
 }
