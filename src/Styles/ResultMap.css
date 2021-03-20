@@ -1,0 +1,5 @@
+.map .MuiSvgIcon-root {
+  color: var(--red) !important;
+  font-size: 40px !important;
+  margin-right: 2px;
+}

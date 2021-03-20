@@ -9,6 +9,7 @@ import {
 } from "@material-ui/pickers";
 import "date-fns";
 import React, { useState } from "react";
+import MapboxAutocomplete from "react-mapbox-autocomplete";
 import AccordionCount from "./AccordionCount";
 
 function SearchForm() {
@@ -66,15 +67,19 @@ function SearchForm() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  const suggestionSelect = (result, lat, lng) => {
+    console.log(result, lat, lng);
+  };
   return (
     <>
       <form action="">
         <div className="search__location">
           <h4>LOCATION</h4>
-          <input
-            type="text"
-            name=""
+          <MapboxAutocomplete
+            publicKey="pk.eyJ1IjoiaHJpZG95LW1hcGJveCIsImEiOiJja21mM294ajMzMjVxMnFvOWUzamFjancwIn0.dghqrHAgIVbKOJAJApVtpw"
+            inputClass="search"
+            onSuggestionSelect={suggestionSelect}
+            resetSearch={false}
             placeholder="Add city, Landmark, or address"
           />
         </div>

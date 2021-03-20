@@ -1,0 +1,46 @@
+.result__section {
+  display: flex;
+  padding-left: 60px;
+}
+.result__content {
+  margin-top: 20px;
+  width: 45%;
+  /* background: #000; */
+}
+.result__map {
+  width: 55%;
+}
+.result__address p {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--gray);
+}
+.result__address h3 {
+  font-size: 18px;
+  color: var(--black);
+  margin-top: 4px;
+}
+/* ul li {
+  font-size: 18px;
+  color: var(--black);
+  margin-top: 4px;
+} */
+.result__address ul {
+  display: flex;
+  margin-top: 15px;
+}
+.result__address ul li {
+  margin-right: 12px;
+}
+.result__address ul li .MuiButton-root {
+  border-radius: 30px !important;
+  padding: 5px 15px;
+  border: 1px solid;
+  border-color: var(--l-gray);
+}
+.result__address ul li .MuiButton-label {
+  text-transform: none;
+}
+.result__hotel {
+  margin-top: 30px;
+}

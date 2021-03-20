@@ -13,6 +13,7 @@
   --ll-gray: #eaeaea;
   --blue: #0377ff;
   --l--blue: #009ab4;
+  --red: #e74c3c;
 }
 * {
   margin: 0;
@@ -37,3 +38,10 @@ a {
 @import "./Styles/AccordionCount.css";
 @import "../node_modules/swiper/swiper-bundle.min";
 @import "./Styles/SwiperCard";
+@import "./Styles/Result";
+@import "./Styles/ResultCard";
+@import "./Styles/ResultMap";
+/* 
+.map__result {
+  position: fixed;
+} */
