@@ -1,0 +1,61 @@
+.result__card .MuiCard-root {
+  max-width: 530px;
+  box-shadow: none !important;
+  cursor: pointer;
+  display: flex;
+  /* background: gray; */
+  border-bottom: 1px solid;
+  border-color: var(--ll-gray);
+  border-radius: 0;
+  padding-bottom: 8px;
+  margin-top: 25px;
+}
+.result__card .MuiCardMedia-root {
+  height: 140px;
+  width: 180px !important;
+  border-radius: 15px;
+}
+.result__card .MuiCardContent-root {
+  padding-right: 0 !important;
+  padding-top: 0px;
+}
+.result__card .result__card_title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--black);
+}
+.result__card .result__card_gusts,
+.result__card .result__card_facilities,
+.result__card .result__card_cancel {
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 6px;
+  color: var(--gray);
+}
+.result__card .result__card_cancel {
+  margin-top: 16px;
+}
+
+.result__rating__price {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.result__card .result__card_rating {
+  font-weight: 800;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  color: var(--gray);
+}
+.result__card .MuiSvgIcon-root {
+  color: var(--d-green) !important;
+  font-size: 15px !important;
+  margin-right: 2px;
+}
+
+.result__card .result__card_price {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--black);
+}

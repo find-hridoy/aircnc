@@ -1,13 +1,15 @@
 import DateFnsUtils from "@date-io/date-fns";
-import { Accordion, AccordionSummary } from "@material-ui/core";
+import { Accordion, AccordionSummary, Button } from "@material-ui/core";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import SearchIcon from "@material-ui/icons/Search";
 import {
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import "date-fns";
 import React, { useState } from "react";
+import MapboxAutocomplete from "react-mapbox-autocomplete";
 import AccordionCount from "./AccordionCount";
 
 function SearchForm() {
@@ -16,14 +18,29 @@ function SearchForm() {
   const [childCount, setChildCount] = useState(0);
   const [babieCount, setBabieCount] = useState(0);
 
-  const adultIncrease = () => {
-    setAdultCount(adultCount + 1);
+  const handleAdultCount = (count) => {
+    if (count && adultCount < 5) {
+      setAdultCount(adultCount + 1);
+    }
+    if (!count && adultCount > 0) {
+      setAdultCount(adultCount - 1);
+    }
   };
-  const childIncrease = () => {
-    setChildCount(childCount + 1);
+  const handleChildCount = (count) => {
+    if (count && childCount < 5) {
+      setChildCount(childCount + 1);
+    }
+    if (!count && childCount > 0) {
+      setChildCount(childCount - 1);
+    }
   };
-  const babieIncrease = () => {
-    setBabieCount(babieCount + 1);
+  const handleBabieCount = (count) => {
+    if (count && babieCount < 5) {
+      setBabieCount(babieCount + 1);
+    }
+    if (!count && babieCount > 0) {
+      setBabieCount(babieCount - 1);
+    }
   };
   //Material Date
   //    const [selectedDate, setSelectedDate] = useState({
@@ -50,15 +67,19 @@ function SearchForm() {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
-
+  const suggestionSelect = (result, lat, lng) => {
+    console.log(result, lat, lng);
+  };
   return (
     <>
       <form action="">
         <div className="search__location">
-          <h3>LOCATION</h3>
-          <input
-            type="text"
-            name=""
+          <h4>LOCATION</h4>
+          <MapboxAutocomplete
+            publicKey="pk.eyJ1IjoiaHJpZG95LW1hcGJveCIsImEiOiJja21mM294ajMzMjVxMnFvOWUzamFjancwIn0.dghqrHAgIVbKOJAJApVtpw"
+            inputClass="search"
+            onSuggestionSelect={suggestionSelect}
+            resetSearch={false}
             placeholder="Add city, Landmark, or address"
           />
         </div>
@@ -93,38 +114,47 @@ function SearchForm() {
             </div>
           </div>
         </MuiPickersUtilsProvider>
-        <div className="">
-          <Accordion>
+        <div className="searchForm__accordion">
+          <Accordion defaultExpanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel2a-header"
             >
               <p>Guests</p>
-              <h3>
-                {adultCount} ADULTS, {childCount} CHILD
-              </h3>
+              <h4>
+                {adultCount} ADULTS, {childCount} CHILD, {babieCount} BABIES
+              </h4>
             </AccordionSummary>
             <AccordionDetails>
               <AccordionCount
                 title="ADULTS"
                 countValue={adultCount}
-                increase={adultIncrease}
+                handleCount={handleAdultCount}
               />
               <AccordionCount
                 title="CHILD"
                 age="Age 2-12"
                 countValue={childCount}
-                increase={childIncrease}
+                handleCount={handleChildCount}
               />
               <AccordionCount
                 title="BABIES"
                 age="Younger than 2"
                 countValue={babieCount}
-                increase={babieIncrease}
+                handleCount={handleBabieCount}
               />
+              <div className="accordion__button">
+                <div></div>
+                <Button size="small">Apply</Button>
+              </div>
             </AccordionDetails>
           </Accordion>
+        </div>
+        <div className="search__button">
+          <Button>
+            <SearchIcon /> Search
+          </Button>
         </div>
       </form>
     </>

@@ -4,12 +4,16 @@
 :root {
   --g-color: linear-gradient(to right, #2bde8c, #86f244);
   --green: #2bde8c;
+  --d-green: #00a799;
   --black: #000;
+  --b-black: #002b37;
   --white: #fff;
   --gray: #6a6a6a;
   --l-gray: #b4b3b3;
   --ll-gray: #eaeaea;
   --blue: #0377ff;
+  --l--blue: #009ab4;
+  --red: #e74c3c;
 }
 * {
   margin: 0;
@@ -18,7 +22,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
   box-sizing: border-box;
 }
 li {
@@ -32,3 +36,22 @@ a {
 @import "./Styles/Banner";
 @import "./Styles/SearchForm";
 @import "./Styles/AccordionCount.css";
+@import "../node_modules/swiper/swiper-bundle.min";
+@import "./Styles/SwiperCard";
+@import "./Styles/Result";
+@import "./Styles/ResultCard";
+@import "./Styles/ResultMap";
+@import "./Styles/Confirm";
+@import "./Styles/MultiStep";
+@import "./Styles/ReviewHouseRules";
+@import "./Styles/WhosComming";
+@import "./Styles/ConfirmAndPay";
+@import "./Styles/ConfirmHotelCard";
+@import "./Styles/ConfirmHotelAccordion";
+@import "./Styles/HotelDetails";
+@import "./Styles/PaymentForm";
+@import "./Styles/LoginModal";
+/* 
+.map__result {
+  position: fixed;
+} */

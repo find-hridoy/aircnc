@@ -3,11 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 .count__title p {
   color: var(--l-gray);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
 }
 .count__count {
@@ -17,7 +17,7 @@
 .count__count > input {
   width: 40px;
   height: 30px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   text-align: center;
   margin: 0 5px;

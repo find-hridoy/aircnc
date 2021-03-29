@@ -1,0 +1,54 @@
+.whosComing {
+  width: 460px;
+  margin-left: 15px;
+  margin-top: 55px;
+}
+.whosComing h4 {
+  font-weight: 600;
+}
+.whosComing__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background: gray; */
+}
+.content__text p {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 5px;
+}
+.content__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content__info h5 {
+  font-weight: 600;
+  margin-top: 5px;
+}
+.whosComing > textarea {
+  border-color: var(--l-gray);
+  border-radius: 2px;
+  font-weight: 600;
+  padding: 10px;
+  font-size: 12px;
+  outline: none;
+  color: var(--black);
+  margin-top: 20px;
+}
+.whosComing > textarea::placeholder {
+  font-weight: 500;
+  color: var(--gray) !important;
+  font-size: 12px;
+}
+.whosComing .MuiButton-root {
+  background: var(--green) !important;
+  width: 22%;
+  height: 40px;
+  margin-top: 20px;
+}
+.whosComing .MuiButton-label {
+  color: var(--white);
+  text-transform: none;
+  font-size: 12px;
+}
