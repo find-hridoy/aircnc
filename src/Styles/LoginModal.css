@@ -1,0 +1,27 @@
+.loginModal__form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.loginModal__form .MuiButton-root {
+  width: 80%;
+  height: 45px;
+  background: var(--g-color) !important;
+  border-radius: 5px !important;
+  margin: 20px 0;
+}
+.loginModal__form .MuiButton-label {
+  color: var(--white);
+  text-transform: none;
+  font-size: 14px;
+}
+.loginModal__form p {
+  text-transform: none;
+  font-size: 13px;
+}
+.loginModal__form p a:hover {
+  text-decoration: underline;
+}

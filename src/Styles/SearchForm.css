@@ -106,8 +106,8 @@
 .MuiInput-underline:after {
   border: none !important;
 }
-/* Accorodian */
-.MuiAccordion-root {
+/* Search From Accorodian */
+.searchForm__accordion .MuiAccordion-root {
   box-shadow: 0px 2px 10px var(--ll-gray) !important;
   border-radius: 10px !important;
 }
@@ -115,17 +115,17 @@
   border-bottom: 1px solid !important;
   border-color: var(--l-gray) !important;
 } */
-.MuiAccordionSummary-content {
+.searchForm__accordion .MuiAccordionSummary-content {
   flex-direction: column;
 }
-.MuiAccordionSummary-content p {
+.searchForm__accordion .MuiAccordionSummary-content p {
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 5px;
   color: var(--l-gray);
 }
 
-.MuiAccordionDetails-root {
+.searchForm__accordion .MuiAccordionDetails-root {
   border-top: 2px solid !important;
   border-color: var(--ll-gray) !important;
   padding: 5px 16px !important;

@@ -1,11 +1,20 @@
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
+import LoginModal from "../Pages/LoginModal";
 import SearchForm from "./SearchForm";
 import SwiperCard from "./SwiperCard";
 
 function Banner() {
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="banner">
       <div className="banner__title">
@@ -25,16 +34,16 @@ function Banner() {
             </div>
             <Swiper spaceBetween={15} slidesPerView={4}>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -47,18 +56,19 @@ function Banner() {
             </div>
             <Swiper spaceBetween={15} slidesPerView={3}>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
               <SwiperSlide>
-                <SwiperCard />
+                <SwiperCard openModal={openModal} />
               </SwiperSlide>
             </Swiper>
           </div>
         </div>
       </div>
+      <LoginModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 }

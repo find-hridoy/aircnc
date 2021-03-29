@@ -1,0 +1,111 @@
+.reviewHouse {
+  width: 490px;
+  margin-left: 15px;
+  margin-top: 35px;
+}
+.reviewHouse h2 {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+.reviewHouse__stayDetails {
+  border-bottom: 2px solid;
+  border-color: var(--l-gray);
+}
+.reviewHouse__stayDetails h4 {
+  font-weight: 600;
+  color: var(--black);
+}
+.reviewHouse__date {
+  display: flex;
+  margin-top: 12px;
+}
+.reviewHouse__fromDate,
+.reviewHouse__toDate {
+  display: flex;
+  align-items: center;
+}
+.reviewHouse__toDate {
+  margin-left: 30px;
+}
+.reviewHouse__fromDate .fromDate__date,
+.reviewHouse__toDate .toDate__date {
+  background: var(--ll-gray);
+  width: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  padding-top: 2px;
+}
+.fromDate__date p,
+.toDate__date p {
+  font-weight: 700;
+  font-size: 13px;
+}
+.fromDate__day_time p,
+.toDate__day_time p {
+  color: var(--gray);
+  font-size: 13px;
+  margin-left: 12px;
+}
+.reviewHouse__stayDetails .self__checkin {
+  color: var(--gray);
+  font-size: 13px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+/* Review House Rules */
+.reviewHouse__rules {
+  padding: 10px 0;
+}
+.reviewHouse__rules h4 {
+  /* font-weight: 600; */
+}
+.reviewHouse__rules ul {
+  padding: 10px 0;
+}
+.reviewHouse__rules ul li {
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+  font-size: 13px;
+  color: var(--gray);
+}
+.reviewHouse__rules ul li .MuiSvgIcon-root {
+  font-size: 15px;
+  color: var(--black);
+  border: 1px solid;
+  border-color: var(--ll-gray);
+  padding: 7px;
+  margin-right: 10px;
+}
+.reviewHouse__rules ul button {
+  font-size: 13px;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--blue);
+  cursor: pointer;
+}
+.reviewHouse__rules ul button span {
+  display: flex;
+  align-items: center;
+}
+.reviewHouse__rules ul button span .MuiSvgIcon-root {
+  font-size: 25px;
+}
+
+.reviewHouse__rules .MuiButton-root {
+  background: var(--green) !important;
+  width: 30%;
+  height: 40px;
+  margin-top: 20px;
+}
+.reviewHouse__rules .MuiButton-label {
+  color: var(--white);
+  text-transform: none;
+  font-size: 12px;
+}

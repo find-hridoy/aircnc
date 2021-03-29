@@ -114,7 +114,7 @@ function SearchForm() {
             </div>
           </div>
         </MuiPickersUtilsProvider>
-        <div className="">
+        <div className="searchForm__accordion">
           <Accordion defaultExpanded>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

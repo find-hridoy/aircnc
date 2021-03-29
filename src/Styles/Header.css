@@ -17,10 +17,37 @@
   font-weight: 700;
   color: var(--green);
 }
+.header__search_result {
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 2px 10px var(--ll-gray) !important;
+  border-radius: 8px !important;
+  padding: 0 12px;
+  margin-left: 145px;
+}
+.header__search_result li {
+  padding: 13px 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+}
+.header__search_result li:nth-child(2) {
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: var(--ll-gray);
+}
+.header__search_result .MuiSvgIcon-root {
+  padding: 0 10px;
+  font-size: 30px;
+  color: var(--green);
+}
 nav ul {
   display: flex;
   /* background: gray; */
   align-items: center;
+}
+.header__condition_nav {
+  display: flex;
 }
 nav ul li {
   margin: 0 3px;

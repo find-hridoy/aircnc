@@ -1,0 +1,106 @@
+.paymentForm__section {
+  margin-top: 50px;
+}
+.paymentForm__section h4 {
+  color: var(--gray);
+  font-weight: 600;
+}
+.paymentForm__section .MuiFormControlLabel-root {
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 20px 28px 23px 10px;
+  margin-top: 16px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border: 1px solid;
+  border-color: var(--l-gray);
+}
+.craditCard__title_section,
+.paypal__title_section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.paypal__title_section {
+  margin-bottom: 0;
+}
+.craditCard__title,
+.paypal__title {
+  width: 80%;
+}
+.craditCard__title p:first-child,
+.paypal__title p:first-child {
+  color: var(--black);
+  font-weight: 800;
+  font-size: 13px;
+}
+.craditCard__title p:last-child,
+.paypal__title p:last-child {
+  color: var(--gray);
+  font-size: 13px;
+  margin-top: 5px;
+}
+.craditCard__image img {
+  margin-left: 4px;
+}
+.paypal__image img {
+  width: 55px;
+}
+.paymentCard__form label {
+  color: var(--l-gray);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-top: 18px;
+}
+.paymentCard__form input,
+.paymentCard__form .StripeElement {
+  display: block;
+  margin-top: 4px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid;
+  border-color: var(--l-gray);
+  outline: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.paymentCard__form input::placeholder {
+  color: #aab7c4;
+}
+
+.paymentCard__form input:focus,
+.StripeElement--focus {
+  box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
+    rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.paymentCard__form .StripeElement.PaymentRequestButton {
+  height: 40px;
+}
+
+.payment__form_align {
+  display: flex;
+  justify-content: space-between;
+}
+.payment__form_align label:last-child {
+  width: 80px;
+}
+.payment__button {
+  text-align: right;
+}
+.payment__button .MuiButton-root {
+  background: var(--green) !important;
+  width: 22%;
+  height: 40px;
+  margin-top: 20px;
+}
+.payment__button .MuiButton-label {
+  color: var(--white);
+  text-transform: none;
+  font-size: 12px;
+}

@@ -4,10 +4,10 @@ import CardContent from "@material-ui/core/CardContent";
 import StarIcon from "@material-ui/icons/Star";
 import React from "react";
 
-function SwiperCard() {
+function SwiperCard({ openModal }) {
   return (
     <div className="swiper__card">
-      <Card>
+      <Card onClick={openModal}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
