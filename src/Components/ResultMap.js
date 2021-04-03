@@ -3,16 +3,12 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import React, { useState } from "react";
 import ReactMapGL, { Marker } from "react-map-gl";
 
-function ResultMap() {
-  // const location = {
-  //   lat: 23.70731,
-  //   lgt: 90.415482,
-  // };
+function ResultMap({ lat, lng }) {
   const [viewport, setViewport] = useState({
     width: "52vw",
     height: "90vh",
-    latitude: 23.900372,
-    longitude: 90.327225,
+    latitude: 24.16667,
+    longitude: 90.41667,
     zoom: 12,
     // pitch: 30,
   });
@@ -29,8 +25,8 @@ function ResultMap() {
         onViewportChange={(nextViewport) => setViewport(nextViewport)}
       >
         <Marker
-          latitude={23.900372}
-          longitude={90.327225}
+          latitude={24.16667}
+          longitude={90.41667}
           offsetLeft={-20}
           offsetTop={-10}
         >

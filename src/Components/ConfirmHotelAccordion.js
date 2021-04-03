@@ -5,17 +5,31 @@ import {
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
+import { useSelector } from "react-redux";
 
 function ConfirmHotelAccordion() {
+  const [data, setdata] = useState({});
+  // get data from redux
+  const result = useSelector((res) => res.data);
+  useEffect(() => {
+    result.map((res) => setdata(res));
+  }, [result]);
+  const { guestCount, checkIn, checkOut } = data;
+  let diffDate = new Date(checkOut - checkIn);
   return (
     <>
       <div className="confirmHotel__dates">
         <p className="confirmHotel__date">Dates</p>
         <div className="confirmHotel__date_box">
-          <p>4/13/2020</p>
+          <p>
+            <Moment format="D/MM/YYYY">{checkIn}</Moment>
+          </p>
           <ArrowForwardIcon />
-          <p>4/17/2020</p>
+          <p>
+            <Moment format="D/MM/YYYY">{checkOut}</Moment>
+          </p>
         </div>
       </div>
       <div className="confirmHotel__guests">
@@ -27,12 +41,12 @@ function ConfirmHotelAccordion() {
               aria-controls="panel1a-content"
               id="panel2a-header"
             >
-              <p>3 guests</p>
+              <p>{guestCount} guests</p>
             </AccordionSummary>
             <AccordionDetails>
               <div className="confirmHotel__perNightPrice">
-                <p>$34 x 4 nights</p>
-                <p>$136</p>
+                <p>$34 x {diffDate.getUTCDate() - 1} nights</p>
+                <p>$ {34 * (diffDate.getUTCDate() - 1)}</p>
               </div>
               <div className="confirmHotel__cleaningFee">
                 <p>Cleaning fee</p>

@@ -1,0 +1,17 @@
+.addDataForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 100px 0;
+}
+.addDataForm input {
+  height: 30px !important;
+  width: 100%;
+  outline: none;
+  padding: 0 5px;
+  margin-bottom: 7px;
+}
+.addDataForm .MuiButton-root {
+  width: 100%;
+}

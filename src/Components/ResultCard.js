@@ -2,10 +2,10 @@ import { Card, CardContent, CardMedia } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import React from "react";
 
-function ResultCard() {
+function ResultCard({ openModal }) {
   return (
     <div className="result__card">
-      <Card>
+      <Card onClick={openModal}>
         <CardMedia
           component="img"
           alt="Contemplative Reptile"
