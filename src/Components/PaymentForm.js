@@ -6,20 +6,33 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PayPalButton } from "react-paypal-button-v2";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import paypal from "../Images/Icons/paypal.svg";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-
+  // get data from redux
+  const loggedInUser = useSelector((res) => res.addUser);
+  const results = useSelector((res) => res.data);
+  const { locationName, guestCount, checkIn, checkOut } = results;
+  let diffDate = new Date(checkOut - checkIn);
+  const [data, setData] = useState([]);
+  const filterHotelData = useSelector((res) => res.allHotelData);
+  const { id } = useParams();
+  useEffect(() => {
+    filterHotelData
+      .filter((res) => res.id == id)
+      .map((allData, index) => setData(allData));
+  }, [id, filterHotelData]);
+  const { title, price } = data;
   // State
   const [checkedValue, setCheckedValue] = useState("card");
-  const [payment, setPayment] = useState(null);
-  const [paypalPayment, setpaypalPayment] = useState(null);
 
   // Radio Button
   const handleRadioChange = (event) => {
@@ -42,21 +55,54 @@ const PaymentForm = () => {
           position: "bottom-right",
         });
       } else {
-        setPayment(paymentMethod.id);
-        toast.success("Your payment was successfull", {
-          position: "bottom-right",
-        });
+        handleUserConfirmData(paymentMethod.id);
+        // toast.success("Your payment was successfull", {
+        //   position: "bottom-right",
+        // });
       }
     }
   };
 
   // Paypal Payment
   const handlePaypalPayment = (details, data) => {
-    setpaypalPayment(data.orderID);
+    handleUserConfirmData(data.orderID);
     toast.success("Transaction completed by " + details.payer.name.given_name, {
       position: "bottom-right",
     });
   };
+
+  const handleUserConfirmData = (orderId) => {
+    const userConfirmData = {
+      name: loggedInUser.displayName,
+      email: loggedInUser.email,
+      title: title,
+      location: locationName,
+      orderId: orderId,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      guests: guestCount,
+      totalPrice: price * (diffDate.getUTCDate() - 1) + 10 + 21,
+    };
+    fetch("http://localhost:5000/api/confirmData", {
+      method: "POST",
+      body: JSON.stringify(userConfirmData),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        toast.success("Your payment was successfull", {
+          position: "bottom-right",
+        });
+      })
+      .catch((err) => {
+        toast.error("Somthing was wrong!", {
+          position: "bottom-right",
+        });
+      });
+  };
+
   return (
     <div className="paymentForm__section">
       <h4>Payment Selection</h4>

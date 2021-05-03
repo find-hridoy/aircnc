@@ -10,14 +10,51 @@ import {
 import "date-fns";
 import React, { useState } from "react";
 import MapboxAutocomplete from "react-mapbox-autocomplete";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { addData } from "../Redux/actions/dataAction";
 import AccordionCount from "./AccordionCount";
 
 function SearchForm() {
-  // Count
+  const dispatch = useDispatch();
+  const history = useHistory();
+  // All State
+  const [locationName, setLocationName] = useState("");
+  const [locationLat, setLocaitonLat] = useState("");
+  const [locationLng, setLocaitonLng] = useState("");
+  const [checkIn, setCheckIn] = useState(new Date());
+  const [checkOut, setCheckOut] = useState(new Date());
   const [adultCount, setAdultCount] = useState(0);
   const [childCount, setChildCount] = useState(0);
   const [babieCount, setBabieCount] = useState(0);
+  const [guestCount, setGuestCount] = useState(0);
 
+  // Location Suggetion Function Start
+  const suggestionSelect = (result, lat, lng) => {
+    setLocationName(result);
+    setLocaitonLat(lat);
+    setLocaitonLng(lng);
+  };
+  // const onPlaceSelect = (place) => {
+  //   console.log(place);
+  // };
+  // Location Suggetion Function End
+
+  //Material Date Function Start
+  const handleCheckInDate = (date) => {
+    // const newDates = { ...selectedDate };
+    // newDates.checkIn = date;
+    setCheckIn(date);
+  };
+  const handleCheckOutDate = (date) => {
+    // const newDates = { ...selectedDate };
+    // newDates.checkOut = date;
+    setCheckOut(date);
+  };
+  //Material Date Function End
+
+  // Count Function Start
   const handleAdultCount = (count) => {
     if (count && adultCount < 5) {
       setAdultCount(adultCount + 1);
@@ -42,34 +79,35 @@ function SearchForm() {
       setBabieCount(babieCount - 1);
     }
   };
-  //Material Date
-  //    const [selectedDate, setSelectedDate] = useState({
-  //     checkIn: new Date(),
-  //     checkOut: new Date()
-  // });
-
-  // const handleCheckInDate = (date) => {
-  //     const newDates = { ...selectedDate }
-  //     newDates.checkIn = date;
-  //     setSelectedDate(newDates);
-  // };
-  // const handleCheckOutDate = (date) => {
-  //     const newDates = { ...selectedDate }
-  //     newDates.checkOut = date;
-  //     setSelectedDate(newDates);
-  // };
-  //Material Date
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleGuestCount = () => {
+    setGuestCount(adultCount + childCount + babieCount);
+    setAdultCount(0);
+    setChildCount(0);
+    setBabieCount(0);
   };
-  const suggestionSelect = (result, lat, lng) => {
-    console.log(result, lat, lng);
+  // Count Function End
+
+  // Search Function Start
+  const handleSearch = () => {
+    if (locationName === "") {
+      toast.error("Please fill the location field", {
+        position: "bottom-right",
+      });
+    }
+    if (locationName !== "") {
+      const newData = {
+        locationName,
+        locationLat,
+        locationLng,
+        guestCount,
+        checkIn,
+        checkOut,
+      };
+      dispatch(addData(newData));
+      history.push("/result");
+    }
   };
+  // Search Function End
   return (
     <>
       <form action="">
@@ -92,8 +130,8 @@ function SearchForm() {
                 margin="normal"
                 id="date-picker-dialog"
                 format="dd/MM/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={checkIn}
+                onChange={handleCheckInDate}
                 KeyboardButtonProps={{
                   "aria-label": "change date",
                 }}
@@ -105,8 +143,8 @@ function SearchForm() {
                 margin="normal"
                 id="date-picker-dialog"
                 format="dd/MM/yyyy"
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={checkOut}
+                onChange={handleCheckOutDate}
                 KeyboardButtonProps={{
                   "aria-label": "change date",
                 }}
@@ -122,9 +160,13 @@ function SearchForm() {
               id="panel2a-header"
             >
               <p>Guests</p>
-              <h4>
-                {adultCount} ADULTS, {childCount} CHILD, {babieCount} BABIES
-              </h4>
+              {guestCount > 0 ? (
+                <h4>{guestCount} GUESTS</h4>
+              ) : (
+                <h4>
+                  {adultCount} ADULTS, {childCount} CHILD, {babieCount} BABIES
+                </h4>
+              )}
             </AccordionSummary>
             <AccordionDetails>
               <AccordionCount
@@ -146,16 +188,19 @@ function SearchForm() {
               />
               <div className="accordion__button">
                 <div></div>
-                <Button size="small">Apply</Button>
+                <Button onClick={handleGuestCount} size="small">
+                  Apply
+                </Button>
               </div>
             </AccordionDetails>
           </Accordion>
         </div>
         <div className="search__button">
-          <Button>
+          <Button onClick={handleSearch}>
             <SearchIcon /> Search
           </Button>
         </div>
+        <ToastContainer />
       </form>
     </>
   );

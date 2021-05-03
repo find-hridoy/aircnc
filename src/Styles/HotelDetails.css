@@ -21,9 +21,7 @@
   border-color: var(--ll-gray);
   padding-bottom: 5px;
 }
-.box1__content {
-  display: flex;
-}
+
 .box1__content_text h1 {
   font-weight: 600;
   font-size: 28px;

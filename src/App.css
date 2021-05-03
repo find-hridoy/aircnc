@@ -50,8 +50,5 @@ a {
 @import "./Styles/ConfirmHotelAccordion";
 @import "./Styles/HotelDetails";
 @import "./Styles/PaymentForm";
-@import "./Styles/LoginModal";
-/* 
-.map__result {
-  position: fixed;
-} */
+@import "./Styles/LoginPage";
+@import "./Styles/PageNotFound";

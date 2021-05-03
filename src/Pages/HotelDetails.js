@@ -1,4 +1,4 @@
-import { Avatar, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -6,48 +6,64 @@ import FlareIcon from "@material-ui/icons/Flare";
 import HomeIcon from "@material-ui/icons/Home";
 import PersonIcon from "@material-ui/icons/Person";
 import StarIcon from "@material-ui/icons/Star";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ConfirmHotelAccordion from "../Components/ConfirmHotelAccordion";
 import Header from "../Components/Header";
+import { useSelector } from "react-redux";
+import { useParams, useHistory } from "react-router-dom";
 
 function HotelDetails() {
+  const [data, setData] = useState([]);
   const [readMore, setReadMore] = useState(false);
+  const results = useSelector((res) => res.allHotelData);
+  const { id } = useParams();
+  useEffect(() => {
+    results
+      .filter((res) => res.id == id)
+      .map((allData, index) => setData(allData));
+  }, [id, results]);
+  const {
+    title,
+    images,
+    guests,
+    baths,
+    beds,
+    price,
+    rating,
+    description,
+    moreDescription,
+  } = data;
+
+  console.log(images);
   const handleReadMore = () => {
     setReadMore(!readMore);
+  };
+  const history = useHistory();
+  const handleRoute = () => {
+    history.push(`/confirm/${id}`);
   };
   return (
     <div className="hotelDetails">
       <Header />
-      <div className="hotelDetails__image">
-        <img
-          src="https://images.pexels.com/photos/1134176/pexels-photo-1134176.jpeg?cs=srgb&dl=pexels-boonkong-boonpeng-1134176.jpg&fm=jpg"
-          alt="hotel img"
-        />
-        <img
-          src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1743231.jpg&fm=jpg"
-          alt="hotel img"
-        />
-      </div>
+      {images && (
+        <div className="hotelDetails__image">
+          <img src={images.thumb} alt="hotel img" />
+          <img src={images.bImg} alt="hotel img" />
+        </div>
+      )}
       <div className="hotelDetails__section">
         <div className="hotelDetails__content">
           <div className="hotelDetails__box1">
             <div className="box1__content">
               <div className="box1__content_text">
-                <h1>Light bright airy stylish apt & sage peaceful stay</h1>
+                <h1>{title}</h1>
                 <p>Dhaka, Bangladesh</p>
                 <p>
-                  <span>4 guests</span>
-                  <span>2 bedrooms</span>
-                  <span>2 beds</span>
-                  <span>2 baths</span>
+                  <span>{guests} guests</span>
+                  <span>{beds} bedrooms</span>
+                  <span>{beds} beds</span>
+                  <span>{baths} baths</span>
                 </p>
-              </div>
-              <div className="box1__content_info">
-                <Avatar
-                  alt="A"
-                  src="https://images.pexels.com/photos/3771811/pexels-photo-3771811.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-3771811.jpg&fm=jpg"
-                />
-                <h5>Rowdra</h5>
               </div>
             </div>
           </div>
@@ -90,34 +106,9 @@ function HotelDetails() {
           </div>
           <div className="hotelDetails__box3">
             <div className="hotelDetails__box3_content">
-              <p>
-                It’s newly constructed 7 storied building maintaining building
-                code by a locally famous architect. Enough lights and natural
-                air are playing here. The place (apartment) is calm and noise
-                free. You’ll love my place for its lovely and bright looks
-                comfortable stay. <br /> <br /> Bangladesh is a beauty with its
-                six seasons and green. The people are hospitable and worm.It’s
-                newly constructed 7 storied building maintaining building code
-                by a locally famous architect. Enough lights and natural air are
-                playing here. The place (apartment) is calm and noise free.{" "}
-                <br /> <br />
-                You’ll love my place for its lovely and bright looks comfortable
-                stay. Bangladesh is a beauty with its six seasons and green. The
-                people are hospitable and worm.
-              </p>
-              {readMore ? (
-                <p>
-                  <br />
-                  You’ll love my place for its lovely and bright looks
-                  comfortable stay. Bangladesh is a beauty with its six seasons
-                  and green. <br /> <br />
-                  The people are hospitable and worm.It’s newly constructed 7
-                  storied building maintaining building code by a locally famous
-                  architect.
-                </p>
-              ) : (
-                ""
-              )}
+              <p>{description}</p>
+              <br />
+              {readMore ? <p>{moreDescription}</p> : ""}
               <button onClick={handleReadMore}>
                 {readMore ? (
                   <span>
@@ -135,7 +126,7 @@ function HotelDetails() {
                 <h4>Reviews</h4>
                 <p>
                   <StarIcon />
-                  4.9
+                  {rating}
                   <span>(20 reviews)</span>
                 </p>
               </div>
@@ -146,17 +137,17 @@ function HotelDetails() {
           <div className="hotelDetails__confirm_card">
             <div className="hotelDetails__rating">
               <h4>
-                $34/ <span>night</span>
+                ${price}/ <span>night</span>
               </h4>
               <p>
                 <StarIcon />
-                4.9
+                {rating}
                 <span>(20 reviews)</span>
               </p>
             </div>
-            <ConfirmHotelAccordion />
+            <ConfirmHotelAccordion price={price} />
             <div className="hotelDetails__reserve_button">
-              <Button>Reserve</Button>
+              <Button onClick={handleRoute}>Reserve</Button>
               <p>You won't be charged yet</p>
             </div>
           </div>
