@@ -1,4 +1,4 @@
-❖ Make a home page with search from.<br/>
+❖ Make a home page with search from. Search any Location and see that in google map.<br/>
 ❖ Users can booking room by use his/her cradit card.<br/>
 ❖ Google login system and Paypal payment method also include in this site.<br/>
 
