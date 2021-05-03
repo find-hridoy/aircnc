@@ -36,6 +36,9 @@ function SearchForm() {
     setLocaitonLat(lat);
     setLocaitonLng(lng);
   };
+  // const onPlaceSelect = (place) => {
+  //   console.log(place);
+  // };
   // Location Suggetion Function End
 
   //Material Date Function Start

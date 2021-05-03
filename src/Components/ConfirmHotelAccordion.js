@@ -9,12 +9,12 @@ import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { useSelector } from "react-redux";
 
-function ConfirmHotelAccordion() {
+function ConfirmHotelAccordion({ price }) {
   const [data, setdata] = useState({});
   // get data from redux
   const result = useSelector((res) => res.data);
   useEffect(() => {
-    result.map((res) => setdata(res));
+    setdata(result);
   }, [result]);
   const { guestCount, checkIn, checkOut } = data;
   let diffDate = new Date(checkOut - checkIn);
@@ -45,8 +45,10 @@ function ConfirmHotelAccordion() {
             </AccordionSummary>
             <AccordionDetails>
               <div className="confirmHotel__perNightPrice">
-                <p>$34 x {diffDate.getUTCDate() - 1} nights</p>
-                <p>$ {34 * (diffDate.getUTCDate() - 1)}</p>
+                <p>
+                  ${price} x {diffDate.getUTCDate() - 1} nights
+                </p>
+                <p>$ {price * (diffDate.getUTCDate() - 1)}</p>
               </div>
               <div className="confirmHotel__cleaningFee">
                 <p>Cleaning fee</p>
@@ -58,7 +60,7 @@ function ConfirmHotelAccordion() {
               </div>
               <div className="confirmHotel__totalPrice">
                 <p>Total</p>
-                <p>$167</p>
+                <p>$ {price * (diffDate.getUTCDate() - 1) + 10 + 21}</p>
               </div>
             </AccordionDetails>
           </Accordion>

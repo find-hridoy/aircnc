@@ -1,12 +1,14 @@
 import { Provider } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
-import AddDataForm from "./Dashboard/AddDataForm";
 import Confirm from "./Pages/Confirm";
 import Home from "./Pages/Home";
 import HotelDetails from "./Pages/HotelDetails";
 import Result from "./Pages/Result";
 import store from "./Redux/store";
+import LoginPage from "./Pages/LoginPage";
+import PrivateRoute from "./Components/Login/PrivateRoute";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   return (
@@ -19,14 +21,17 @@ function App() {
           <Route exact path="/result">
             <Result />
           </Route>
-          <Route exact path="/details">
+          <Route exact path="/details/:id">
             <HotelDetails />
           </Route>
-          <Route exact path="/confirm">
+          <PrivateRoute exact path="/confirm/:id">
             <Confirm />
+          </PrivateRoute>
+          <Route exact path="/login">
+            <LoginPage />
           </Route>
-          <Route exact path="/dashboard">
-            <AddDataForm />
+          <Route exact path="*">
+            <PageNotFound />
           </Route>
         </Switch>
       </div>

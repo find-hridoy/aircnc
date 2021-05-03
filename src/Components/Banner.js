@@ -4,8 +4,11 @@ import { NavLink } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SearchForm from "./SearchForm";
 import SwiperCard from "./SwiperCard";
+import { useSelector } from "react-redux";
+import "../../node_modules/swiper/swiper.min.css";
 
 function Banner() {
+  const results = useSelector((res) => res.allHotelData);
   return (
     <div className="banner">
       <div className="banner__title">
@@ -24,18 +27,11 @@ function Banner() {
               </NavLink>
             </div>
             <Swiper spaceBetween={15} slidesPerView={4}>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
+              {results.map((hotelData, index) => (
+                <SwiperSlide key={index}>
+                  <SwiperCard hotelData={hotelData} />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
           <div className="banner__home">
@@ -46,15 +42,11 @@ function Banner() {
               </NavLink>
             </div>
             <Swiper spaceBetween={15} slidesPerView={3}>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <SwiperCard />
-              </SwiperSlide>
+              {results.map((hotelData, index) => (
+                <SwiperSlide key={index}>
+                  <SwiperCard hotelData={hotelData} />
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>

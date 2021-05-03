@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import { dataReducer } from "./dataReducer";
+import { dataReducer, allHotelDataReducer } from "./dataReducer";
 
 export default combineReducers({
   data: dataReducer,
+  allHotelData: allHotelDataReducer,
 });

@@ -1,3 +1,8 @@
+.map {
+  width: 100%;
+  position: fixed;
+  height: 100%;
+}
 .map .MuiSvgIcon-root {
   color: var(--red) !important;
   font-size: 40px !important;

@@ -5,9 +5,20 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import PetsIcon from "@material-ui/icons/Pets";
 import SmokingRoomsIcon from "@material-ui/icons/SmokingRooms";
 import WarningIcon from "@material-ui/icons/Warning";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Moment from "react-moment";
+import { useSelector } from "react-redux";
 
 function ReviewHouseRules({ handleNext }) {
+  const [data, setdata] = useState({});
+  // get data from redux
+  const result = useSelector((res) => res.data);
+  useEffect(() => {
+    setdata(result);
+  }, [result]);
+  const { checkIn, checkOut, locationName } = data;
+  let diffDate = new Date(checkOut - checkIn);
+
   const [readMore, setReadMore] = useState(false);
   const handleReadMore = () => {
     setReadMore(!readMore);
@@ -16,26 +27,44 @@ function ReviewHouseRules({ handleNext }) {
     <div className="reviewHouse">
       <h2>Review house rules</h2>
       <div className="reviewHouse__stayDetails">
-        <h4>3 nights in Dhaka</h4>
+        <h4>
+          {diffDate.getUTCDate() - 1} nights in {locationName}
+        </h4>
         <div className="reviewHouse__date">
           <div className="reviewHouse__fromDate">
             <div className="fromDate__date">
-              <p>APR</p>
-              <p>13</p>
+              <p>
+                <Moment format="MMM">{checkIn}</Moment>
+              </p>
+              <p>
+                <Moment format="DD">{checkIn}</Moment>
+              </p>
             </div>
             <div className="fromDate__day_time">
-              <p>Monday check-in</p>
-              <p>After 12:00 PM</p>
+              <p>
+                <Moment format="dddd">{checkIn}</Moment> check-in
+              </p>
+              <p>
+                After <Moment format="LT">{checkIn}</Moment>
+              </p>
             </div>
           </div>
           <div className="reviewHouse__toDate">
             <div className="toDate__date">
-              <p>APR</p>
-              <p>17</p>
+              <p>
+                <Moment format="MMM">{checkOut}</Moment>
+              </p>
+              <p>
+                <Moment format="DD">{checkOut}</Moment>
+              </p>
             </div>
             <div className="toDate__day_time">
-              <p>Thursday check-out</p>
-              <p>After 11:00 AM</p>
+              <p>
+                <Moment format="dddd">{checkOut}</Moment> check-out
+              </p>
+              <p>
+                After <Moment format="LT">{checkOut}</Moment>
+              </p>
             </div>
           </div>
         </div>

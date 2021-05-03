@@ -16,22 +16,10 @@ export const googleSignIn = () => {
     .auth()
     .signInWithPopup(googleProvider)
     .then((result) => {
-      //   const { displayName, email } = result.user;
-      //   const signInUser = {
-      //     name: displayName,
-      //     email: email,
-      //   };
       const signInUser = result.user;
       return signInUser;
     })
     .catch((error) => {
-      //   const { errorCode, errorMessage, email } = error;
-      //   const signInUserError = {
-      //     code: errorCode,
-      //     message: errorMessage,
-      //     email: email,
-      //   };
-      //   const signInUserError = error;
       return error;
     });
 };

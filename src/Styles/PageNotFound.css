@@ -1,0 +1,19 @@
+.pageNotFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.pageNotFound h1 {
+  font-size: 80px;
+}
+.pageNotFound h3 {
+  font-size: 50px;
+}
+.pageNotFound h5 {
+  font-size: 20px;
+}
+.pageNotFound h5 a {
+  margin-left: 10px;
+}

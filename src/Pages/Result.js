@@ -2,20 +2,13 @@ import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Moment from "react-moment";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 import Header from "../Components/Header";
 import ResultCard from "../Components/ResultCard";
 import ResultMap from "../Components/ResultMap";
-import LoginModal from "./LoginModal";
 
 function Result() {
-  const history = useHistory();
-  const [data, setdata] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
-  const result = useSelector((res) => res.data);
-  useEffect(() => {
-    result.map((res) => setdata(res));
-  }, [result]);
+  const results = useSelector((res) => res.data);
+  const allhotelData = useSelector((res) => res.allHotelData);
   const {
     locationName,
     locationLat,
@@ -23,16 +16,7 @@ function Result() {
     guestCount,
     checkIn,
     checkOut,
-  } = data;
-
-  const openModal = () => {
-    history.push("/details");
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  } = results;
   return (
     <div className="result">
       <Header />
@@ -60,17 +44,15 @@ function Result() {
             </ul>
           </div>
           <div className="result__hotel">
-            <ResultCard openModal={openModal} />
-            <ResultCard openModal={openModal} />
-            <ResultCard openModal={openModal} />
-            <ResultCard openModal={openModal} />
+            {allhotelData.map((hData, index) => (
+              <ResultCard hotelData={hData} />
+            ))}
           </div>
         </div>
         <div className="result__map">
-          <ResultMap lat={locationLat} lng={locationLng} />
+          <ResultMap lat={locationLat} lng={locationLng} name={locationName} />
         </div>
       </div>
-      <LoginModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 }

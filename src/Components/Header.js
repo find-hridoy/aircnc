@@ -1,36 +1,38 @@
 import { Avatar } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Moment from "react-moment";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import LoginModal from "../Pages/LoginModal";
+import { useParams, useHistory } from "react-router-dom";
+import { addUserData } from "./../Redux/actions/dataAction";
 
 function Header() {
-  const [data, setdata] = useState({});
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
   // get data from redux
-  const result = useSelector((res) => res.data);
-  useEffect(() => {
-    result.map((res) => setdata(res));
-  }, [result]);
-  const { locationName, guestCount, checkIn, checkOut } = data;
-  // modal function
-  const openModal = () => {
-    setIsOpen(true);
+  const results = useSelector((res) => res.data);
+  const loggedInUser = useSelector((res) => res.addUser);
+  const { locationName, guestCount, checkIn, checkOut } = results;
+  const { id } = useParams();
+  const history = useHistory();
+  const handleRoute = () => {
+    history.push("/login");
   };
-  const closeModal = () => {
-    setIsOpen(false);
+  const userLogOut = () => {
+    dispatch(addUserData([]));
+  };
+  const handleHomeRoute = () => {
+    history.push("/");
   };
   return (
     <div className="header">
       <div className="header__section">
-        <div className="header__logo">
+        <div className="header__logo" onClick={handleHomeRoute}>
           <h4>Aircnc</h4>
         </div>
         {(window.location.pathname === "/result" ||
-          window.location.pathname === "/details") && (
+          window.location.pathname === `/details/${id}`) && (
           <div className="header__search_result">
             <li>{locationName}</li>
             <li>
@@ -55,7 +57,7 @@ function Header() {
                 <li>
                   <Button>
                     <NavLink exact to="/">
-                      Host your ecperiance
+                      Host your experiance
                     </NavLink>
                   </Button>
                 </li>
@@ -68,24 +70,19 @@ function Header() {
                 </NavLink>
               </Button>
             </li>
-
-            <div className="logout__button">
-              <Avatar
-                alt="A"
-                src="https://images.pexels.com/photos/3771811/pexels-photo-3771811.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-3771811.jpg&fm=jpg"
-              />
-              <Button>Login Out</Button>
-            </div>
-            <div className="login__button">
-              <Button onClick={openModal}>Login</Button>
-            </div>
-            <div className="signup__button">
-              <Button onClick={openModal}>Sign up</Button>
-            </div>
+            {loggedInUser && loggedInUser.email ? (
+              <div className="logout__button">
+                <Avatar alt="A" src={loggedInUser.photoURL} />
+                <Button onClick={userLogOut}>Login Out</Button>
+              </div>
+            ) : (
+              <div className="signup__button">
+                <Button onClick={handleRoute}>Sign up</Button>
+              </div>
+            )}
           </ul>
         </nav>
       </div>
-      <LoginModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 }
